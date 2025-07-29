@@ -109,3 +109,45 @@ Console.WriteLine("Number to Sum: ");
 int n = int.Parse(Console.ReadLine());
 Console.WriteLine(SumOfDigits(n));
 Console.ReadLine();
+
+
+//PROBLEM 4 
+//Palindrome
+
+//Check if a given string is a palindrome.
+
+//Input:
+
+//A string s.
+//Output:
+
+//True if s is a palindrome, False otherwise.
+//Example:
+
+//Input: "racecar"
+//Output: True
+
+bool IsPalindrome(string s)
+{
+    if (string.IsNullOrEmpty(s))
+        return false;
+
+    int left = 0;
+    int right = s.Length - 1;
+    while (left < right)
+    {
+        if (s[left] != s[right])
+            return false;
+        left++;
+        right--;
+    }
+    return true;
+}
+
+// Test IsPalindrome
+string[] testStrings = { "racecar", "level", "hello", "a", "", "abccba", "abc" };
+foreach (var test in testStrings)
+{
+    Console.WriteLine($"Is \"{test}\" a palindrome? {IsPalindrome(test)}");
+}
+Console.ReadLine();
