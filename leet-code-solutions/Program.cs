@@ -28,6 +28,7 @@
 //Only one valid answer exists.
 
 // Test TwoSum
+
 var result = TwoSum(new int[] { 2, 7, 11, 15 }, 9);
 Console.WriteLine(string.Join(", ", result)); // Output: 0, 1
 Console.ReadLine();
@@ -76,4 +77,35 @@ string LongestCommonPrefix(string[] strs)
 
 var prefix = LongestCommonPrefix(new string[] { "flower", "flow", "flight" });
 Console.WriteLine(prefix); // Output: "fl"
+Console.ReadLine();
+
+//PROBLEM 3
+
+//Write a function to calculate the sum of digits of a given number.
+
+//Input:
+
+//An integer n.
+//Output:
+
+//The sum of digits of n.
+//Example:
+
+//Input: 12345
+//Output: 15
+
+int SumOfDigits(int n)
+{
+    int sum = 0;
+    while (n > 0)
+    {
+        sum += n % 10;  // Add the last digit
+        n /= 10;        // Remove the last digit
+    }
+    return sum;
+}
+
+Console.WriteLine("Number to Sum: ");
+int n = int.Parse(Console.ReadLine());
+Console.WriteLine(SumOfDigits(n));
 Console.ReadLine();
