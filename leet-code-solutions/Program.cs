@@ -140,6 +140,44 @@ class Program
         PrintList(reversed3);
         Console.WriteLine(new string('-', 40));
 
+        // RemoveElementSolution Test
+        var removeElementSolution = new RemoveElementSolution();
+
+        // Test 1
+        int[] numsRE1 = { 3, 2, 2, 3 };
+        int val1 = 3;
+        int kRE1 = removeElementSolution.RemoveElement(numsRE1, val1);
+        Console.WriteLine($"RemoveElement: k = {kRE1}, nums = [{string.Join(", ", numsRE1[..kRE1])}]"); // Output: k = 2, nums = [2, 2]
+        Console.WriteLine(new string('-', 40));
+
+        // Test 2
+        int[] numsRE2 = { 0, 1, 2, 2, 3, 0, 4, 2 };
+        int val2 = 2;
+        int kRE2 = removeElementSolution.RemoveElement(numsRE2, val2);
+        Console.WriteLine($"RemoveElement: k = {kRE2}, nums = [{string.Join(", ", numsRE2[..kRE2])}]"); // Output: k = 5, nums = [0, 1, 3, 0, 4] (order may vary)
+        Console.WriteLine(new string('-', 40));
+
+        // Test 3: All elements are val
+        int[] numsRE3 = { 1, 1, 1, 1 };
+        int val3 = 1;
+        int kRE3 = removeElementSolution.RemoveElement(numsRE3, val3);
+        Console.WriteLine($"RemoveElement: k = {kRE3}, nums = [{string.Join(", ", numsRE3[..kRE3])}]"); // Output: k = 0, nums = []
+        Console.WriteLine(new string('-', 40));
+
+        // Test 4: No elements are val
+        int[] numsRE4 = { 5, 6, 7 };
+        int val4 = 1;
+        int kRE4 = removeElementSolution.RemoveElement(numsRE4, val4);
+        Console.WriteLine($"RemoveElement: k = {kRE4}, nums = [{string.Join(", ", numsRE4[..kRE4])}]"); // Output: k = 3, nums = [5, 6, 7]
+        Console.WriteLine(new string('-', 40));
+
+        // Test 5: Empty array
+        int[] numsRE5 = { };
+        int val5 = 0;
+        int kRE5 = removeElementSolution.RemoveElement(numsRE5, val5);
+        Console.WriteLine($"RemoveElement: k = {kRE5}, nums = [{string.Join(", ", numsRE5[..kRE5])}]"); // Output: k = 0, nums = []
+        Console.WriteLine(new string('-', 40));
+
         Console.ReadLine();
     }
 }
