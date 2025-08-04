@@ -87,6 +87,59 @@ class Program
         Console.WriteLine($"RemoveDuplicates: k = {k2}, nums = [{string.Join(", ", numsRD2[..k2])}]"); // Output: k = 5, nums = [0, 1, 2, 3, 4]
         Console.WriteLine(new string('-', 40));
 
+        // ReverseLinkedListSolution Test
+        var reverseListSolution = new ReverseLinkedListSolution();
+
+        // Helper to build a linked list from array
+        ListNode BuildList(int[] values)
+        {
+            ListNode head = null;
+            for (int i = values.Length - 1; i >= 0; i--)
+            {
+                head = new ListNode(values[i], head);
+            }
+            return head;
+        }
+
+        // Helper to print a linked list
+        void PrintList(ListNode head)
+        {
+            while (head != null)
+            {
+                Console.Write(head.val);
+                if (head.next != null) Console.Write(" -> ");
+                head = head.next;
+            }
+            Console.WriteLine();
+        }
+
+        // Test 1: 1 -> 2 -> 3 -> null
+        var list1 = BuildList(new[] { 1, 2, 3 });
+        Console.Write("Original List: ");
+        PrintList(list1);
+        var reversed1 = reverseListSolution.ReverseList(list1);
+        Console.Write("Reversed List: ");
+        PrintList(reversed1);
+        Console.WriteLine(new string('-', 40));
+
+        // Test 2: 1 -> null
+        var list2 = BuildList(new[] { 1 });
+        Console.Write("Original List: ");
+        PrintList(list2);
+        var reversed2 = reverseListSolution.ReverseList(list2);
+        Console.Write("Reversed List: ");
+        PrintList(reversed2);
+        Console.WriteLine(new string('-', 40));
+
+        // Test 3: Empty list
+        var list3 = BuildList(Array.Empty<int>());
+        Console.Write("Original List: ");
+        PrintList(list3);
+        var reversed3 = reverseListSolution.ReverseList(list3);
+        Console.Write("Reversed List: ");
+        PrintList(reversed3);
+        Console.WriteLine(new string('-', 40));
+
         Console.ReadLine();
     }
 }
