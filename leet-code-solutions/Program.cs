@@ -1,222 +1,67 @@
-﻿//PROBLEM 1
-//Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
-//You may assume that each input would have exactly one solution, and you may not use the same element twice.
-//You can return the answer in any order.
+﻿using System;
+using LeetCodeSolutions;
 
-//Example 1:
-
-//Input: nums = [2,7,11,15], target = 9
-//Output: [0,1]
-//Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
-
-//Example 2:
-
-//Input: nums = [3,2,4], target = 6
-//Output: [1,2]
-
-//Example 3:
-
-//Input: nums = [3,3], target = 6
-//Output: [0,1]
-
-//Constraints:
-
-//2 <= nums.length <= 104
-//-109 <= nums[i] <= 109
-//-109 <= target <= 109
-
-//Only one valid answer exists.
-
-// Test TwoSum
-
-var result = TwoSum(new int[] { 2, 7, 11, 15 }, 9);
-Console.WriteLine(string.Join(", ", result)); // Output: 0, 1
-Console.ReadLine();
-
-int[] TwoSum(int[] nums, int target)
+class Program
 {
-    var dict = new Dictionary<int, int>();
-    for (int i = 0; i < nums.Length; i++)
+    static void Main()
     {
-        int complement = target - nums[i];
-        if (dict.ContainsKey(complement))
-            return new int[] { dict[complement], i };
-        dict[nums[i]] = i;
-    }
-    return Array.Empty<int>();
-}
+        // TwoSumSolution Test
+        var twoSum = new TwoSumSolution();
+        int[] nums1 = { 2, 7, 11, 15 };
+        int target1 = 9;
+        Console.WriteLine("TwoSum: " + string.Join(", ", twoSum.TwoSum(nums1, target1))); // Output: 0, 1
 
-//PROBLEM 2
+        int[] nums2 = { 3, 2, 4 };
+        int target2 = 6;
+        Console.WriteLine("TwoSum: " + string.Join(", ", twoSum.TwoSum(nums2, target2))); // Output: 1, 2
 
-//Write a function to find the longest common prefix string amongst an array of strings.
-//If there is no common prefix, return an empty string "".
+        int[] nums3 = { 3, 3 };
+        int target3 = 6;
+        Console.WriteLine("TwoSum: " + string.Join(", ", twoSum.TwoSum(nums3, target3))); // Output: 0, 1
 
-//Example 1:
-//Input: strs = ["flower", "flow", "flight"] Output: "fl" Example 2:
-//Input: strs = ["dog", "racecar", "car"] Output: "" Explanation: There is no common prefix among the input strings.
+        // LongestCommonPrefixSolution Test
+        var lcp = new LongestCommonPrefixSolution();
+        string[] strs1 = { "flower", "flow", "flight" };
+        Console.WriteLine("LongestCommonPrefix: " + lcp.LongestCommonPrefix(strs1)); // Output: "fl"
 
-//Constraints:
-//1 <= strs.length <= 200 0 <= strs[i].length <= 200 strs[i] consists of only lowercase English letters if it is non-empty.
-string LongestCommonPrefix(string[] strs)
-{
-    if (strs == null || strs.Length == 0)
-        return "";
+        string[] strs2 = { "dog", "racecar", "car" };
+        Console.WriteLine("LongestCommonPrefix: " + lcp.LongestCommonPrefix(strs2)); // Output: ""
 
-    for (int i = 0; i < strs[0].Length; i++)
-    {
-        char c = strs[0][i];
-        for (int j = 1; j < strs.Length; j++)
+        // SumOfDigitsSolution Test
+        var sumDigits = new SumOfDigitsSolution();
+        int n1 = 12345;
+        Console.WriteLine($"SumOfDigits({n1}): {sumDigits.SumOfDigits(n1)}"); // Output: 15
+
+        int n2 = 0;
+        Console.WriteLine($"SumOfDigits({n2}): {sumDigits.SumOfDigits(n2)}"); // Output: 0
+
+        // PalindromeSolution Test
+        var palindrome = new PalindromeSolution();
+        string[] testStrings = { "racecar", "level", "hello", "a", "", "abccba", "abc", null };
+        foreach (var test in testStrings)
         {
-            // If i is out of bounds for strs[j] or characters don't match
-            if (i >= strs[j].Length || strs[j][i] != c)
-                return strs[0].Substring(0, i);
+            Console.WriteLine($"Is \"{test}\" a palindrome? {palindrome.IsPalindrome(test)}");
         }
-    }
-    return strs[0];
-}
 
-var prefix = LongestCommonPrefix(new string[] { "flower", "flow", "flight" });
-Console.WriteLine(prefix); // Output: "fl"
-Console.ReadLine();
-
-//PROBLEM 3
-
-//Write a function to calculate the sum of digits of a given number.
-
-//Input:
-
-//An integer n.
-//Output:
-
-//The sum of digits of n.
-//Example:
-
-//Input: 12345
-//Output: 15
-
-int SumOfDigits(int n)
-{
-    int sum = 0;
-    while (n > 0)
-    {
-        sum += n % 10;  // Add the last digit
-        n /= 10;        // Remove the last digit
-    }
-    return sum;
-}
-
-Console.WriteLine("Number to Sum: ");
-int n = int.Parse(Console.ReadLine());
-Console.WriteLine(SumOfDigits(n));
-Console.ReadLine();
-
-
-//PROBLEM 4 
-//Palindrome
-
-//Check if a given string is a palindrome.
-
-//Input:
-
-//A string s.
-//Output:
-
-//True if s is a palindrome, False otherwise.
-//Example:
-
-//Input: "racecar"
-//Output: True
-
-bool IsPalindrome(string s)
-{
-    if (string.IsNullOrEmpty(s))
-        return false;
-
-    int left = 0;
-    int right = s.Length - 1;
-    while (left < right)
-    {
-        if (s[left] != s[right])
-            return false;
-        left++;
-        right--;
-    }
-    return true;
-}
-
-// Test IsPalindrome
-string[] testStrings = { "racecar", "level", "hello", "a", "", "abccba", "abc" };
-foreach (var test in testStrings)
-{
-    Console.WriteLine($"Is \"{test}\" a palindrome? {IsPalindrome(test)}");
-}
-Console.ReadLine();
-
-//Valid Parentheses
-//Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
-
-//An input string is valid if:
-
-//Open brackets must be closed by the same type of brackets.
-//Open brackets must be closed in the correct order.
-//Every close bracket has a corresponding open bracket of the same type.
-
-//Example 1:
-//Input: s = "()"
-//Output: true
-
-//Example 2:
-//Input: s = "()[]{}"
-//Output: true
-
-//Example 3:
-//Input: s = "(]"
-//Output: false
-
-//Example 4:
-//Input: s = "([])"
-//Output: true
-//Example 5:
-
-//Input: s = "([)]"
-//Output: false
-
-//Constraints:
-
-//1 <= s.length <= 104
-//s consists of parentheses only '()[]{}'.
-
-//[()]
-bool IsValidParenthesis(string s)
-{
-    var stack = new Stack<char>();
-    var map = new Dictionary<char, char>
-    {
-        { ')', '(' },
-        { '}', '{' },
-        { ']', '[' }
-    };
-
-    foreach (char c in s)
-    {
-        if (map.ContainsKey(c))
+        // ValidParenthesisSolution Test
+        var validParenthesis = new ValidParenthesisSolution();
+        string[] testParentheses = { "()", "()[]{}", "(]", "([])", "([)]", "{[()]}", "{[()()]}", "((()))", "((())", "(()))" };
+        foreach (var test in testParentheses)
         {
-            char topElement = stack.Count == 0 ? '#' : stack.Pop();
-            if (topElement != map[c])
-                return false;
+            Console.WriteLine($"Is \"{test}\" valid? {validParenthesis.IsValidParenthesis(test)}");
         }
-        else
+
+        // MergeTwoListsSolution Test
+        var mergeLists = new MergeTwoListsSolution();
+        var l1 = new ListNode(1, new ListNode(2, new ListNode(4)));
+        var l2 = new ListNode(1, new ListNode(3, new ListNode(4)));
+        var merged = mergeLists.MergeTwoLists(l1, l2);
+        Console.Write("Merged List: ");
+        while (merged != null)
         {
-            stack.Push(c);
+            Console.Write(merged.val + " ");
+            merged = merged.next;
         }
+        Console.WriteLine();
     }
-    return stack.Count == 0;
-}
-
-// Test IsValidParenthesis
-string[] testParentheses = { "()", "()[]{}", "(]", "([])", "([)]", "{[()]}", "{[()()]}", "((()))", "((())", "(()))" };      
-
-foreach (var test in testParentheses)
-{
-    Console.WriteLine($"Is \"{test}\" valid? {IsValidParenthesis(test)}");
 }
