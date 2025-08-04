@@ -1,5 +1,4 @@
-﻿using System;
-using LeetCodeSolutions;
+﻿using LeetCodeSolutions;
 
 class Program
 {

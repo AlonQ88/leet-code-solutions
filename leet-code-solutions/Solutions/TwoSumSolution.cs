@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace LeetCodeSolutions
 {
     public class TwoSumSolution
@@ -14,7 +12,7 @@ namespace LeetCodeSolutions
                     return new int[] { dict[complement], i };
                 dict[nums[i]] = i;
             }
-            return System.Array.Empty<int>();
+            return Array.Empty<int>();
         }
     }
 }
